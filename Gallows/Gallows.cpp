@@ -2,6 +2,7 @@
 #include <conio.h>
 #include <fstream>
 #include <string>
+#include <ctime> 
 using namespace std;
 
 class Gallow {
@@ -154,6 +155,7 @@ public:
 int main()
 {
     srand(time(0));
+    double start = clock();
     Gallow G;
     cout << "Warning!!! Works only on English keyboard layout\nIf you give up or don't want to play anymore, press Esc\nHave fun\n";
     system("pause");
@@ -166,16 +168,23 @@ int main()
         system("pause");
 
     }
+    double finish = clock();
+    double res = (finish - start) / 1000;
+    system("cls");
     if (G.Chech()) {
-        system("cls");
         cout << "Well done!\nYou guessed the word \"" << G.s << "\"\nTotal misses: "<<G.miss<<"(";
         for (auto a : G.misses) {
             cout << a << ", ";
         }
-        cout << ")";
+        cout << ")\nTime spent: "<<res<<" sec";
     }
     else {
-        cout << "The word you guessed: " << G.s;
+        cout << "The word you guessed: \"" << G.s<<"\"";
+        cout<< "\nTotal misses: " << G.miss << "(";
+        for (auto a : G.misses) {
+            cout << a << ", ";
+        }
+        cout << ")\nTime spent: " << res << " sec";
     }
 
 }
